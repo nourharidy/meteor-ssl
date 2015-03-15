@@ -1,4 +1,4 @@
-# **SSL** for Meteor
+# SSL for Meteor
 
 #### Simple built-in Meteor SSL functionality for the first time!
 
@@ -36,7 +36,7 @@ https://localhost
 ```
 * This package does not encrypt communication between Meteor & MongoDB, to workaround this you must put MongoDB on Meteor's localhost or a server inside your secure private network.
 
-##FAQ
+## FAQ
 
 #### Does it support Websockets?
 Yes, it encrypts both HTTP packets and Websockets (including DDP).
