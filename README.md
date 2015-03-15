@@ -13,7 +13,12 @@ After the package installation has finished, it is recommended to put your SSL *
 #### Server Javascript function
 The **SSL()** function is used to launch the SSL functionality from the server, the SSL feature wont be present unless you use it, it must only be used inside the *server* directory.
 
-The function has two obligatory arguments: The path to the SSL **key** & the SSL **cert** file, respectively. The third argument is optional: Define the SSL **port** (Default: 443). 
+The function has two obligatory arguments: The *absolute path* to the SSL **key** & the SSL **cert** file, respectively. The third argument is optional: Define the SSL **port** (Default: 443).
+
+Example:
+```sh
+SSL('/home/user/app/private/server.key','/home/user/app/private/server.crt', 443);
+```
 
 ### isHTTPS()
 #### Client Javascript boolean function
@@ -121,4 +126,4 @@ If you have a question, a bug, or an idea, feel free to contact me:
 
 * Send me an email: nourharidy@yahoo.com
 * Send me a tweet: [@nourharidy](http://www.twitter.com/NourHaridy)
-
+* Check out my [Github](https://github.com/nourharidy)
