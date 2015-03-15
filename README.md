@@ -10,9 +10,50 @@ After the package installation has finished, it is recommended to put your SSL *
 
 ## API
 ### SSL(**key**, **cert**, [**port**])
+#### Server Javascript function
 The **SSL()** function is used to launch the SSL functionality from the server, the SSL feature wont be present unless you use it, it must only be used inside the *server* directory.
 
 The function has two obligatory arguments: The path to the SSL **key** & the SSL **cert** file, respectively. The third argument is optional: Define the SSL **port** (Default: 443). 
+
+### isHTTPS()
+#### Client Javascript boolean function
+Returns *true* if user is using HTTPS connection
+
+*warning*: Because this is a *client* function, this does not prevent the server from sending templates over HTTP connection, neither it prevents it from sending data over HTTP unless you prevent it from the client side.
+
+### switchHTTPS()
+#### Client Javascript function
+This function refreshes the page after switching the browser to HTTPS on port 443
+
+Example with the iron:router:
+```sh
+Router.route('/', function(){
+  if(isHTTPS()){
+    this.route('home');
+  } else {
+    switchHTTPS();
+  }
+})
+```
+For the above example to work, the HTTP port must be 80, and the HTTPS port must be 443 (default).
+
+## UI Helpers
+
+### {{isHTTPS}}
+#### Client boolean UI helper
+Returns *true* if user is using HTTPS connection
+
+This UI helper can be used in your template as a condition that returns whether or not the user is using HTTPS. This is useful to show content to the user if he is using HTTPS in certain parts of your templates.
+*warning*: Because this is a *client* helper, this does not protect the template views from being sent from the server over HTTP. Using the helper, the templates/views are sent anyway but the user just can't see it unless he uses HTTPS.
+
+Example:
+```sh
+{{#if isHTTPS}}
+You are using HTTPS
+{{else}}
+You are not using HTTPS
+{{/if}}
+```
 
 ## Notes
 
