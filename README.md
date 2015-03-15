@@ -26,9 +26,9 @@ Returns *true* if user is using HTTPS connection
 
 *warning*: Because this is a *client* function, this does not prevent the server from sending templates over HTTP connection, neither it prevents it from sending data over HTTP unless you prevent it from the client side.
 
-### switchHTTPS()
+### switchHTTPS([port])
 #### Client Javascript function
-This function refreshes the page after switching the browser to HTTPS on port 443
+This function refreshes the page after switching the browser to HTTPS. This function takes one optional argument: The SSL port previously specified by the SSL() server function (Default is 443).
 
 Example with the iron:router:
 ```sh
@@ -127,3 +127,4 @@ If you have a question, a bug, or an idea, feel free to contact me:
 * Send me an email: nourharidy@yahoo.com
 * Send me a tweet: [@nourharidy](http://www.twitter.com/NourHaridy)
 * Check out my [Github](https://github.com/nourharidy)
+
