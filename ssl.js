@@ -4,7 +4,8 @@ SSL = function(key, cert, port){
 	if(!port){
 		port = 443;
 	};
-	httpProxy.createServer({
+	
+	proxy = httpProxy.createServer({
 		target: {
     		host: 'localhost',
     		port: process.env.PORT
@@ -16,4 +17,9 @@ SSL = function(key, cert, port){
  		ws: true,
  		xfwd: true
  	}).listen(port);
+	
+	proxy.on("error", function() {
+        	console.log("HTTP-PROXY NPM MODULE ERROR: " + err);
+        	return;
+      	});
 };
