@@ -2,6 +2,10 @@
 
 #### Simple built-in Meteor SSL functionality for the first time!
 
+<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/VTm4Jd1GnYcRgnzPRDD9GzX6/nourharidy/meteor-ssl'>
+  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/VTm4Jd1GnYcRgnzPRDD9GzX6/nourharidy/meteor-ssl.svg' />
+</a>
+
 ## Install
 ```sh
 meteor add nourharidy:ssl 
