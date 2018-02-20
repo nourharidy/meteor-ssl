@@ -12,7 +12,9 @@ switchHTTPS = function(port){
 	window.location = 'https://'+window.location.hostname+':'+port+window.location.pathname+window.location.search;
 }
 Meteor.startup(function(){
-	Template.registerHelper('isHTTPS', function(){
+	try {
+		Template.registerHelper('isHTTPS', function(){
 		return isHTTPS();
 	})
+	} catch (e){}
 });
