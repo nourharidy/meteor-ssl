@@ -1,6 +1,6 @@
 Package.describe({
-  name: 'sudotong:ssl',
-  version: '0.2.3',
+  name: 'nourharidy:ssl',
+  version: '0.2.2',
   summary: 'Sexy SSL support for Meteor',
   documentation: 'README.md',
   git: 'https://github.com/nourharidy/meteor-ssl.git'
