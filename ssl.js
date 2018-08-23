@@ -11,8 +11,8 @@ SSL = function(key, cert, port){
     		port: process.env.PORT
   		},
   		ssl: {
-    		key: fs.readFileSync(key, 'utf8'),
-    		cert: fs.readFileSync(cert, 'utf8')
+    		key,
+    		cert
  		},
  		ws: true,
  		xfwd: true

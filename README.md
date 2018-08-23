@@ -21,7 +21,7 @@ The function has two obligatory arguments: The *absolute path* to the SSL **key*
 
 Example:
 ```sh
-SSL('/home/user/app/private/server.key','/home/user/app/private/server.crt', 443);
+SSL(Assets.getText("server.key"), Assets.getText("server.cert"), 443);
 ```
 
 ### isHTTPS()
