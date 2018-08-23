@@ -10,7 +10,13 @@
 ```sh
 meteor add nourharidy:ssl 
 ```
-After the package installation has finished, it is recommended to put your SSL **key** & **cert** files inside your Meteor *private* directory. However, you can put it wherever else you want **outside** the meteor application directory.
+After the package installation has finished, you place your SSL **key** & **cert** files inside your Meteor *private* directory. 
+
+```sh
+openssl genrsa -out localhost.key 2048
+openssl req -new -x509 -key localhost.key -out localhost.cert -days 3650 -subj /CN=localhost
+```
+_If you want to use a host other than localhost then replace every reference to “localhost” above witb your custom domain_.
 
 ## API
 ### SSL(**key**, **cert**, [**port**])
@@ -85,6 +91,11 @@ This is why you are encouraged to use the default SSL port *443* so you can open
 ```sh
 https://localhost
 ```
+To Revert the effects caused by running sudo, run this command:
+```sh
+sudo chown -Rh <username> .meteor/local
+```
+
 * This package does not encrypt communication between Meteor & MongoDB, to workaround this you must put MongoDB on Meteor's localhost or a server inside your secure private network.
 
 ## FAQ
