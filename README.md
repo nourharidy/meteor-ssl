@@ -18,7 +18,7 @@ openssl req -new -x509 -key localhost.key -out localhost.cert -days 3650 -subj /
 ```
 _If you want to use a host other than localhost then replace every reference to “localhost” above witb your custom domain_.
 
-```
+```sh
 // somewhere within your server code
 SSL(
   Assets.getText("localhost.key"),
@@ -35,7 +35,10 @@ The function has two obligatory arguments: The UTF-8 formatted string of the SSL
 
 Example:
 ```sh
-SSL("server.key", "server.cert", 443);
+SSL(
+  Assets.getText("localhost.key"),
+  Assets.getText("localhost.cert"),
+  443);
 ```
 
 ### isHTTPS()
