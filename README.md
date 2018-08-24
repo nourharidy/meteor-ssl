@@ -107,7 +107,7 @@ sudo chown -Rh <username> .meteor/local
 
 ## FAQ
 
-#### Does it support Websockets?
+### Does it support Websockets?
 Yes, it encrypts both HTTP packets and Websockets (including DDP).
 
 ### Does it work with Phonegap/Cordova?
