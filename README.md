@@ -6,22 +6,39 @@
   <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/VTm4Jd1GnYcRgnzPRDD9GzX6/nourharidy/meteor-ssl.svg' />
 </a>
 
-## Install
+## Quickstart
 ```sh
 meteor add nourharidy:ssl 
 ```
-After the package installation has finished, it is recommended to put your SSL **key** & **cert** files inside your Meteor *private* directory. However, you can put it wherever else you want **outside** the meteor application directory.
+After the package installation has finished, you place your SSL **key** & **cert** files inside your Meteor *private* directory. 
+
+```sh
+openssl genrsa -out localhost.key 2048
+openssl req -new -x509 -key localhost.key -out localhost.cert -days 3650 -subj /CN=localhost
+```
+_If you want to use a host other than localhost then replace every reference to “localhost” above witb your custom domain_.
+
+```sh
+// somewhere within your server code
+SSL(
+  Assets.getText("localhost.key"),
+  Assets.getText("localhost.cert"),
+  443);
+```
 
 ## API
 ### SSL(**key**, **cert**, [**port**])
 #### Server Javascript function
 The **SSL()** function is used to launch the SSL functionality from the server, the SSL feature wont be present unless you use it, it must only be used inside the *server* directory.
 
-The function has two obligatory arguments: The *absolute path* to the SSL **key** & the SSL **cert** file, respectively. The third argument is optional: Define the SSL **port** (Default: 443).
+The function has two obligatory arguments: The UTF-8 formatted string of the SSL **key** & the SSL **cert** files, respectively. The third argument is optional: Define the SSL **port** (Default: 443).
 
 Example:
 ```sh
-SSL('/home/user/app/private/server.key','/home/user/app/private/server.crt', 443);
+SSL(
+  Assets.getText("localhost.key"),
+  Assets.getText("localhost.cert"),
+  443);
 ```
 
 ### isHTTPS()
@@ -85,6 +102,11 @@ This is why you are encouraged to use the default SSL port *443* so you can open
 ```sh
 https://localhost
 ```
+To Revert the effects caused by running sudo, run this command:
+```sh
+sudo chown -Rh <username> .meteor/local
+```
+
 * This package does not encrypt communication between Meteor & MongoDB, to workaround this you must put MongoDB on Meteor's localhost or a server inside your secure private network.
 
 ## FAQ

@@ -5,14 +5,16 @@ SSL = function(key, cert, port){
 		port = 443;
 	};
 	
+	const [,, host, targetPort] = Meteor.absoluteUrl().match(/([a-zA-Z]+):\/\/([\-\w\.]+)(?:\:(\d{0,5}))?/)
+
 	proxy = httpProxy.createServer({
 		target: {
-    		host: 'localhost',
-    		port: process.env.PORT
+    		host,
+    		port: targetPort
   		},
   		ssl: {
-    		key: fs.readFileSync(key, 'utf8'),
-    		cert: fs.readFileSync(cert, 'utf8')
+    		key,
+    		cert
  		},
  		ws: true,
  		xfwd: true
