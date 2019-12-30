@@ -15,11 +15,11 @@ openssl req -new -x509 -key localhost.key -out localhost.cert -days 3650 -subj /
 _If you want to use a host other than localhost then replace every reference to “localhost” above witb your custom domain_.
 
 ```sh
-// somewhere within your server code
+// server.js
 SSL(
   Assets.getText("localhost.key"),
-  Assets.getText("localhost.cert"),
-  443);
+  Assets.getText("localhost.cert"));
+// We default to 9000 port  
 ```
 
 ## API
@@ -27,14 +27,13 @@ SSL(
 #### Server Javascript function
 The **SSL()** function is used to launch the SSL functionality from the server, the SSL feature wont be present unless you use it, it must only be used inside the *server* directory.
 
-The function has two obligatory arguments: The UTF-8 formatted string of the SSL **key** & the SSL **cert** files, respectively. The third argument is optional: Define the SSL **port** (Default: 443).
+The function has two obligatory arguments: The UTF-8 formatted string of the SSL **key** & the SSL **cert** files, respectively. The third argument is optional: Define the SSL **port** (Default: 9000).
 
 Example:
 ```sh
 SSL(
   Assets.getText("localhost.key"),
-  Assets.getText("localhost.cert"),
-  443);
+  Assets.getText("localhost.cert"));
 ```
 
 ### isHTTPS()
@@ -45,7 +44,7 @@ Returns *true* if user is using HTTPS connection
 
 ### switchHTTPS([port])
 #### Client Javascript function
-This function refreshes the page after switching the browser to HTTPS. This function takes one optional argument: The SSL port previously specified by the SSL() server function (Default is 443).
+This function refreshes the page after switching the browser to HTTPS. This function takes one optional argument: The SSL port previously specified by the SSL() server function (Default is 9000).
 
 Example with the iron:router:
 ```sh
@@ -57,7 +56,7 @@ Router.route('/', function(){
   }
 })
 ```
-For the above example to work, the HTTP port must be 80, and the HTTPS port must be 443 (default).
+For the above example to work, the HTTP port must be 80, and the HTTPS port must be 9000 (default).
 
 ## UI Helpers
 
@@ -80,12 +79,12 @@ You are not using HTTPS
 ## Notes
 
 * If your SSL Certificate has a password, you will be prompted with "Enter PEM passphrase" everytime the server is started.
-* In order for Meteor to use port 443 for SSL (the default port), it must be started as root:
+* In order for Meteor to use port 9000 for SSL (the default port), it must be started as root:
 ```sh
 sudo meteor 
 ```
 Failing to do this can cause error `Error: listen EACCES` being thrown by dependency node-http-proxy
-* In order for the *force-ssl* package to work with this package, please make sure the SSL port is 443 (default).
+* In order for the *force-ssl* package to work with this package, please make sure the SSL port is 9000 (default).
 * You have to add the *https://* prefix to the url if you use the port number in the url. For example, assuming you chose *9000* as SSL port, this will **NOT** work:
 ```sh
 localhost:9000
@@ -94,7 +93,7 @@ It will keep your browser loading forever instead of redirecting you to an HTTPS
 ```sh
 https://localhost:9000
 ```
-This is why you are encouraged to use the default SSL port *443* so you can open:
+This is why you are encouraged to use the default SSL port *9000* so you can open:
 ```sh
 https://localhost
 ```
@@ -114,11 +113,11 @@ Yes, it encrypts both HTTP packets and Websockets (including DDP).
 
 Yes, when you *run* it in development, just set the **--mobile-server** argument to the the server location preceded by the *https://* prefix & followed by the SSL port, for example if you use it on an Android device:
 ```sh
-meteor run android-device --mobile-server=https://localhost:443
+meteor run android-device --mobile-server=https://localhost:9000
 ```
 When you *build* the mobile application, use the same syntax with the **--server** argument, for example:
 ```sh
-meteor build --server=https://localhost:443
+meteor build --server=https://localhost:9000
 ```
 
 ### Does it work with server-to-server DDP connections?
@@ -126,7 +125,7 @@ Yes, just adjust **DDP.connect()** to the appropriate SSL port.
 
 Example:
 ```sh
-DDP.connect('https://example.com:443');
+DDP.connect('https://example.com:9000');
 ```
 ### Does it encrypt the connection between Meteor & MongoDB?
 
@@ -138,7 +137,7 @@ This is because your SSL certificate is self-signed, to prevent this you need to
 
 ### How do i force Meteor to always use SSL?
 
-Set the SSL port to 443 (default) and install the force-ssl smart package:
+Set the SSL port to 9000 (default) and install the force-ssl smart package:
 ```sh
 meteor add force-ssl
 ```
