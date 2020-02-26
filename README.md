@@ -15,11 +15,11 @@ openssl req -new -x509 -key localhost.key -out localhost.cert -days 3650 -subj /
 _If you want to use a host other than localhost then replace every reference to “localhost” above witb your custom domain_.
 
 ```sh
-// somewhere within your server code
+// server.js
 SSL(
   Assets.getText("localhost.key"),
-  Assets.getText("localhost.cert"),
-  443);
+  Assets.getText("localhost.cert"));
+// We default to 443 port  
 ```
 
 ## API
@@ -33,8 +33,7 @@ Example:
 ```sh
 SSL(
   Assets.getText("localhost.key"),
-  Assets.getText("localhost.cert"),
-  443);
+  Assets.getText("localhost.cert"));
 ```
 
 ### isHTTPS()
@@ -86,13 +85,13 @@ sudo meteor
 ```
 Failing to do this can cause error `Error: listen EACCES` being thrown by dependency node-http-proxy
 * In order for the *force-ssl* package to work with this package, please make sure the SSL port is 443 (default).
-* You have to add the *https://* prefix to the url if you use the port number in the url. For example, assuming you chose *9000* as SSL port, this will **NOT** work:
+* You have to add the *https://* prefix to the url if you use the port number in the url. For example, assuming you chose *443* as SSL port, this will **NOT** work:
 ```sh
-localhost:9000
+localhost:443
 ```
 It will keep your browser loading forever instead of redirecting you to an HTTPS connection. To make it work, you have to add the *https//* prefix:
 ```sh
-https://localhost:9000
+https://localhost:443
 ```
 This is why you are encouraged to use the default SSL port *443* so you can open:
 ```sh
