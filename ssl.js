@@ -12,7 +12,7 @@ SSL = function(key, cert, port) {
   );
 
 	if (!port) {
-		port = 9000
+		port = 443
 	}
 
   const proxy = httpProxy

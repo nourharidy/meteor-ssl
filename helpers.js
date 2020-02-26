@@ -7,7 +7,7 @@ isHTTPS = function(){
 }
 switchHTTPS = function(port){
 	if(!port){
-		port = 9000;
+		port = 443;
 	}
 	window.location = 'https://'+window.location.hostname+':'+port+window.location.pathname+window.location.search;
 }
