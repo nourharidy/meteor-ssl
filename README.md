@@ -12,7 +12,7 @@ After the package installation has finished, you place your SSL **key** & **cert
 openssl genrsa -out localhost.key 2048
 openssl req -new -x509 -key localhost.key -out localhost.cert -days 3650 -subj /CN=localhost
 ```
-_If you want to use a host other than localhost then replace every reference to “localhost” above witb your custom domain_.
+_If you want to use a host other than localhost then replace every reference to “localhost” above with your custom domain_.
 
 ```sh
 // somewhere within your server code
