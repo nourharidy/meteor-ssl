@@ -32,8 +32,8 @@ The function has two obligatory arguments: The UTF-8 formatted string of the SSL
 Example:
 ```sh
 SSL(
-  Assets.getText("localhost.key"),
-  Assets.getText("localhost.cert"),
+  Assets.absoluteFilePath("localhost.key"),
+  Assets.absoluteFilePath("localhost.cert"),
   443);
 ```
 
